@@ -1,0 +1,42 @@
+<div class="container">
+  class="form"
+  <form  (ngSubmit)="submitLoginForm(loginForm)" [formGroup]="loginForm">
+    <!-- Email input -->
+    <div class="form-group">
+      <label for="username"> اسم المستخدم </label>       
+      <input formControlName="username" type="text" placeholder="اسم المستخدم" />
+      <div *ngIf="loginForm.get('username')?.errors && loginForm.get('username')?.touched" class="alert alert-danger">
+        <small *ngIf="loginForm.get('username')?.getError('required')" class="error">  اسم المستخدم مطلوب.</small>
+        <!-- <small *ngIf="loginForm.get('username')?.getError('email')" class="error">    ادخل ايميل</small> -->
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">كلمة السر </label>       
+      <input formControlName="password" type="password" placeholder="كلمة السر " />
+      <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger">
+        <small *ngIf="loginForm.get('password')?.getError('required')" class="error"> كلمة السر مطلوبة</small>
+        <small *ngIf="loginForm.get('password')?.getError('minLength')" class="error">    كلمة السر لا تقل عن 8 احرف</small>
+
+      </div>
+    </div>
+
+    <!-- Checkbox and link -->
+    <div class="row mb-3">
+      <div class="col d-flex justify-content-start align-items-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="rememberMe"  />
+          <label class="form-check-label" for="rememberMe">  تذكرني</label>
+        </div>
+      </div>
+    
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary btn-block mb-3">
+      <span *ngIf="!isLoading">تسجيل الدخول </span>
+      <i *ngIf="isLoading" class="fas fa-spinner fa-spin">انتظر من فضلك ..</i>
+      </button>
+   
+  </form>
+</div>

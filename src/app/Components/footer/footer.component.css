@@ -1,0 +1,21 @@
+.footer {
+    /* background-color: #343a40; */
+    color: white;
+    text-align: center;
+    padding: 5px;
+  }
+  
+  .footer-images {
+    display: flex;
+    justify-content: center; /* لجعل الصور في وسط الفوتر */
+    align-items: center; /* لمحاذاة الصور عموديًا */
+    gap: 10px; /* مسافة بين الصور */
+  }
+  
+  .footer-images img {
+    width: 35px; /* عرض الصورة */
+    height: 35px; /* ارتفاع الصورة */
+    object-fit: cover; /* يجعل الصورة تغطي المساحة المحددة دون تشويه */
+    border-radius: 5px; /* إضافة انحناء طفيف للزوايا */
+  }
+  

@@ -1,0 +1,45 @@
+.active{border: 1px black solid;
+border-radius: 25%;
+/* background: #000; */
+}
+.body{
+    background-color: aqua;
+}
+/* General Navbar Styling */
+.navbar {
+    padding: 10px 20px; /* Padding for a neat appearance */
+    box-shadow: 0 2px 5px rgba(9, 92, 246, 0.996); /* Slight shadow for a modern look */
+  }
+  
+  /* Center the menu */
+  .navbar-nav {
+    text-align: center; /* Ensure the text aligns properly */
+  }
+  
+  /* Style the logo */
+  .navbar-brand {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* White color for the logo text */
+  }
+  
+  .navbar-brand img {
+    margin-left: 10px; /* Space between the logo and the text */
+  }
+  
+  /* Style the nav links */
+  .nav-link {
+    font-size: 14px;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+    color: #fff;
+  }
+  .nav-pills .nav-link {
+    color: #0d6efd; /* لون النص أزرق ليبرز على الخلفية */
+  }
+  
+  

@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+.form.control.ng-toutched.ng-invalid{
+    border: 2px solid red;
+}
+.form.control.ng-valid{
+    border: 2px solid green;
+}
+body {
+    background-image: url("assets/images/bg/download(1).jpg");
+    /* background-image: url("assets/images/bg/download (2).jpg"); */
+    /* background-image: url("assets/images/bg/download.jpg"); */
+    background-size: cover;
+    justify-content: center;
+    justify-items: center;
+        background-image: url("assets/images/bg/download.jpg");
+        background-size: cover; /* لضمان أن الصورة تغطي الخلفية بالكامل */
+        background-position: center; /* لضبط الصورة في المنتصف */
+        background-repeat: no-repeat; /* لمنع تكرار الصورة */
+        background-attachment: fixed; /* لتثبيت الخلفية أثناء التمرير */
+    
+    
+}

@@ -1,0 +1,52 @@
+<div class="container">
+  <h2 class="text-center">  البحث عن الخطابات</h2><br>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{ resultArray.length }}</th>
+        <th>جهه الخطاب 
+          <input type="text" placeholder="ابحث باستخدام الجهه"
+            (keyup)="beginSearch($event)"
+            [(ngModel)]="from"/>
+        </th>
+        <th>رقم الخطاب 
+          <input type="letterNumber" placeholder="ابحث باستخدام الرقم"
+            (keyup)="beginSearch($event)"
+            [(ngModel)]="letterNumber"/>
+        </th>
+        <th>موضوع الخطاب 
+          <input type="text" placeholder="ابحث باستخدام العنوان"
+            (keyup)="beginSearch($event)"
+            [(ngModel)]="title"/>
+        </th>
+        <th>تاريخ
+          <input type="date" placeholder="ابحث باستخدام تاريخ"
+            (keyup)="beginSearch($event)"
+            [(ngModel)]="fileDate" />
+        </th>
+        
+        <th>اشارات
+          <input type="text" placeholder="ابحث باستخدام الاشارات"
+            (keyup)="beginSearch($event)"
+            [(ngModel)]="tags" />
+        </th>
+        <th>اضافات
+          
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of resultArray; let i = index ">
+        <th>{{i + 1}}</th>
+        <td>{{row.Directorate}}</td>
+
+        <td>{{row.letterNumber}}</td>
+        <td>{{row.title}}</td>
+        <td>{{row.fileDate}}</td> 
+        <td>{{row.tags}}</td> 
+        <td><div><i class="bi bi-eye-fill"></i><i class="bi bi-pen"></i> <i class="bi bi-trash3-fill"></i> </div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

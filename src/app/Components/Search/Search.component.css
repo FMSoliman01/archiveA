@@ -1,0 +1,56 @@
+/* Reset الصفحة */
+* {
+  margin: auto auto;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(249, 249, 249, 0.9);  /* لون الخلفية */
+    direction: rtl; /* محاذاة من اليمين لليسار */
+  }
+  
+  /* الحاوية */
+  .container {
+    width: 80%;
+    max-width: 1000px;
+    background: rgba(255, 255, 255, 0.3);  /* شفافية الخلفية */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    backdrop-filter: blur(10px);  /* تأثير الزجاج */
+    position: relative; /* تأكيد وجود موضع */
+  }
+  
+  /* الجدول */
+  .table {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);  /* شفافية الخلفية */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);  /* تأثير الزجاج */
+    position: relative; /* تأكيد وجود موضع */
+  }
+  
+  .table th, .table td {
+    padding: 10px;
+    text-align: right;
+    font-size: 14px;
+  }
+  
+  /* المدخلات */
+  input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
+  

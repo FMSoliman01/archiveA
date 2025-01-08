@@ -1,0 +1,45 @@
+<nav class="navbar sticky-top navbar-expand-lg --bs-primary-bg-subtle  bg-primary"  >
+  <div class="container-fluid">
+    <a class="navbar-brand ms-auto" href="#"> <img src="../../../assets/images/logo/New_Aswan_city_logo.png" alt=" logo" width="40" height="40" class="d-inline-block align-text-top">
+       جهاز مدينة أسوان الجديدة </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul *ngIf="isLogin" class="navbar-nav mx-auto nav nav-pills nav-fill gap-2 p-1 small bg-primary bg-light rounded-5 shadow-sm" id="ul" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+        <li class="nav-item">
+          <a  class="nav-link rounded-5" routerLinkActive="active" aria-current="page" routerLink="/home">القائمة الرئيسية</a>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link nav-link rounded-5" routerLinkActive="active" routerLink="/add">الاضافة</a>
+        </li>
+        <li class="nav-item">
+          <a  class=" nav-link rounded-5" routerLinkActive="active" routerLink="/search">البحث</a>
+        </li>
+       
+       
+      </ul>
+      <ul class="navbar-nav mx-auto nav nav-pills nav-fill gap-2 p-1 small bg-primary bg-light rounded-5 shadow-sm" id="ul" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+   
+       
+        <li class="nav-item">
+          <a *ngIf="!isLogin" class="nav-link rounded-5 " routerLinkActive="active" routerLink="/login">تسجيل الدخول</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="!isLogin" class="nav-link rounded-5 " routerLinkActive="active" routerLink="/register"> اضافة حساب</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="isLogin" (click)="logout()" class="nav-link rounded-5 ">  تسجيل خروج</a>
+        </li>
+      </ul  >
+    </div>
+  </div>
+</nav>

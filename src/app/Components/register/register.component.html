@@ -1,0 +1,74 @@
+<div class="card">
+  <h2 class="text-center">Sign Up</h2>
+  <div class="content">
+    <!-- Form Section -->
+    <div class="form-section">
+<div *ngIf="error " class='alert alert-danger'>{{error}}</div>
+      <form (ngSubmit)="submitRegisterForm(registerForm) "  [formGroup]="registerForm" >
+        <div class="form-group">
+
+           <label for="fullName">الاسم </label>       
+           <input formControlName="fullname" type="text" placeholder="الاسم بالكامل" />
+           <div *ngIf="registerForm.get('fullname')?.errors && registerForm.get('fullname')?.touched" class="alert alert-danger">
+            <small  *ngIf="registerForm.get('fullname')?.getError('required')"class="error"> الاسم مطلوب.</small>
+            <!-- <div *ngIf="letterNumber.errors?.[''required'']">رقم الخطاب مطلوب.</div> -->
+    
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id">الرقم القومي </label>       
+          <input formControlName="id" type="text" placeholder=" الرقم القومي" />
+          <div *ngIf="registerForm.get('id')?.errors && registerForm.get('id')?.touched" class="alert alert-danger">
+            <small *ngIf="registerForm.get('id')?.getError('required')" class="error"> الرقم القومي مطلوب.</small>
+            <small *ngIf="registerForm.get('id')?.getError('pattern')" class="error">    الرقم القومي 14 رقم</small>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="department">القسم </label>       
+          <input formControlName="department" type="text" placeholder="القسم" />
+          <div *ngIf="registerForm.get('department')?.errors && registerForm.get('department')?.touched" class="alert alert-danger">
+            <small *ngIf="registerForm.get('department')?.getError('required')" class="error">  القسم مطلوب.</small>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="role">الدور </label>       
+          <input formControlName="role" type="text" placeholder="دور المستخدم " />
+          <div *ngIf="registerForm.get('role')?.errors && registerForm.get('role')?.touched" class="alert alert-danger">
+            <small *ngIf="registerForm.get('role')?.getError('required')" class="error">  دور المستخدم مطلوب.</small>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="username"> اسم المستخدم </label>       
+          <input formControlName="username" type="text" placeholder="اسم المستخدم" />
+          <div *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched" class="alert alert-danger">
+            <small *ngIf="registerForm.get('username')?.getError('required')" class="error">  اسم المستخدم مطلوب.</small>
+            <!-- <small *ngIf="registerForm.get(userName)?.getError(email)" class="error">    ادخل ايميل</small> -->
+
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">كلمة السر </label>       
+          <input formControlName="password" type="password" placeholder="كلمة السر " />
+          <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger">
+            <small *ngIf="registerForm.get('password')?.getError('required')" class="error"> كلمة السر مطلوبة</small>
+            <small *ngIf="registerForm.get('password')?.getError('minLength')" class="error">    كلمة السر لا تقل عن 8 احرف</small>
+
+          </div>
+        </div>
+        <!-- <div class="form-group">
+          <input type="checkbox" id="terms" />
+          <label for="terms">I agree to the <a href="#">Terms</a></label>
+        </div> -->
+        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary btn-block mb-3">
+          <span *ngIf="!isLoading">تسجيل</span>
+          <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+          </button>
+        
+      </form>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,129 @@
+/* landing-page.component.css */
+
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+  }
+  
+  .landing-page {
+    text-align: center;
+  }
+  
+  /* Header Styles */
+  /* .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004080;
+    color: white;
+    padding: 10px 20px;
+  }
+   */
+  /* .header .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .header .nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+  }
+  
+  .header .nav a:hover {
+    text-decoration: underline;
+  } */
+  
+  /* Hero Section Styles */
+  .hero {
+    background-color: #1c77ff;
+    color: white;
+    padding: 50px 20px;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    margin: 0 0 10px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin: 0 0 20px;
+  }
+  
+  .hero .cta {
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .hero .cta:hover {
+    background-color: #00264d;
+  }
+  
+  /* Features Section Styles */
+  .features {
+    padding: 40px 20px;
+  }
+  
+  .features h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .feature-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .feature {
+    text-align: center;
+    width: 200px;
+  }
+  
+  .feature img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  
+  /* Interface Section Styles */
+  .interface {
+    padding: 40px 20px;
+    background-color: #e6f2ff;
+  }
+  
+  .interface img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Testimonials Section Styles */
+  .testimonials {
+    padding: 40px 20px;
+  }
+  
+  .testimonials blockquote {
+    font-style: italic;
+    border-left: 4px solid #007acc;
+    padding-left: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  
+  .testimonials footer {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  

@@ -1,0 +1,182 @@
+
+<div class="card">
+  <h2 class="text-center"> تسجيل الخطاب {{radio}} </h2>
+  <div class="content">
+    <!-- قسم النموذج -->
+    <div class="form-section">
+      <form  (ngSubmit)="submitaddingFileForm(addingFileForm)" [formGroup]="addingFileForm">
+        <!-- نوع الخطاب -->
+        <div class="form-group">
+          <label>نوع الخطاب:</label>
+          <div>
+            <label>
+              <input
+              (change)="radioOutgoing()"
+                type="radio"
+                formControlName="letterType"
+                value="صادر"
+                required
+              /> صادر
+            </label>
+            <label>
+              <input
+              (change)="radioIncoming()"
+
+                type="radio"
+                formControlName="letterType"
+                value="وارد"
+                required
+              /> وارد
+            </label>
+          </div>
+          <div *ngIf="addingFileForm.get('letterType')?.errors && addingFileForm.get('letterType')?.touched" class="alert alert-danger">
+            <small>يرجى اختيار نوع الخطاب.</small>
+          </div>
+        </div>
+
+        <!-- رقم الخطاب -->
+        <div class="form-group">
+          <label for="letterNumber">رقم الخطاب:</label>
+          <input
+            class="form-control"
+            id="letterNumber"
+            type="number"
+            formControlName="letterNumber"
+            placeholder="أدخل رقم الخطاب"
+            required
+          />
+          <div *ngIf="addingFileForm.get('letterNumber')?.errors && addingFileForm.get('letterNumber')?.touched" class="alert alert-danger">
+            <small *ngIf="addingFileForm.get('letterNumber')?.getError('required')">رقم الخطاب مطلوب.</small>
+          </div>
+        </div>
+          <!-- تاريخ الخطاب -->
+          <div class="form-group">
+            <label for="fileDate">تاريخ الخطاب:</label>
+            <input
+              class="form-control"
+              id="fileDate"
+              type="fileDate"
+              formControlName="fileDate"
+              required
+            />
+          </div>
+            <!--    تاريخ الخطاب الفعلي-->
+        <div class="form-group">
+          <label for="deliveryDate">تاريخ وصول الخطاب:</label>
+          <input
+            class="form-control"
+            id="deliveryDate"
+            type="fileDate"
+            formControlName="deliveryDate"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="responseDuration"> مدة الرد:</label>
+          <input
+            class="form-control"
+            id="responseDuration"
+            type="number"
+            formControlName="responseDuration"
+          />
+        </div>
+
+        <!-- عنوان الخطاب -->
+        <div class="form-group">
+          <label for="title">موضوع الخطاب:</label>
+          <input
+            class="form-control"
+            id="title"
+            type="text"
+            formControlName="title"
+            placeholder="أدخل عنوان الخطاب"
+            required
+            minlength="5"
+            maxlength="35"
+          />
+          <div *ngIf="addingFileForm.get('title')?.errors && addingFileForm.get('title')?.touched" class="alert alert-danger">
+            <small *ngIf="addingFileForm.get('title')?.getError('required')">العنوان مطلوب.</small>
+            <small *ngIf="addingFileForm.get('title')?.getError('minlength')">الحد الأدنى 5 أحرف.</small>
+            <small *ngIf="addingFileForm.get('title')?.getError('maxlength')">الحد الأقصى 35 حرفًا.</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Directorate">جهة الخطاب:</label>
+          <input
+            class="form-control"
+            id="Directorate"
+            type="text"
+            formControlName="Directorate"
+            placeholder="أدخل جهة الخطاب"
+            required
+            minlength="5"
+            maxlength="35"
+          />
+          <div *ngIf="addingFileForm.get('Directorate')?.errors && addingFileForm.get('Directorate')?.touched" class="alert alert-danger">
+            <small *ngIf="addingFileForm.get('Directorate')?.getError('required')">العنوان مطلوب.</small>
+            
+          </div>
+        </div>
+
+      
+
+        <!-- وصف الخطاب -->
+        <div class="form-group">
+          <label for="description">وصف الخطاب:</label>
+          <textarea
+            class="form-control"
+            id="description"
+            formControlName="description"
+            placeholder="أدخل وصف الخطاب"
+          ></textarea>
+        </div>
+
+        <!-- Tags -->
+        <div class="form-group">
+          <label for="tags">الوسوم:</label>
+          <input
+            class="form-control"
+            id="tags"
+            type="text"
+            formControlName="tags"
+            placeholder="أدخل الوسوم (افصل بينها بفاصلة ',')"
+          />
+        </div>
+
+        <!-- إضافة ملف -->
+        <div class="form-group">
+          <label for="file">إضافة ملف:</label>
+          <input
+            class="form-control"
+            id="file"
+            type="file"
+            formControlName="file"
+            (change)="handleFileInput($event)"
+            required
+            multiple
+          />
+          <div *ngIf="addingFileForm.get('file')?.errors && addingFileForm.get('file')?.touched" class="alert alert-danger">
+            <small>إرفاق الملف مطلوب.</small>
+          </div>
+        </div>
+
+        <!-- عدد المرفقات -->
+        <div class="form-group">
+          <label for="attachmentCount">عدد المرفقات:</label>
+          <input
+            class="form-control"
+            id="attachmentCount"
+            type="text"
+            formControlName="attachmentCount"
+            placeholder="أدخل عدد المرفقات"
+          />
+        </div>
+
+        <!-- زر الإرسال [disabled]="addingFileForm.invalid"-->
+        <button type="submit"  class="btn btn-primary btn-block mb-3">
+          إرسال
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

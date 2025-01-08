@@ -1,0 +1,116 @@
+<div class="card">
+  <h2 class="text-center">تسجيل الخطاب الصارد</h2>
+  <div class="content">
+    <!-- قسم النموذج -->
+    <div class="form-section">
+      <form  (ngSubmit)="submitoutgoingFileForm(outgoingFileForm)" [formGroup]="outgoingFileForm">
+        <!-- نوع الخطاب -->
+       
+
+        <!-- رقم الخطاب -->
+        <div class="form-group">
+          <label for="number">رقم الخطاب:</label>
+          <input
+            class="form-control"
+            id="number"
+            type="number"
+            formControlName="number"
+            placeholder="أدخل رقم الخطاب"
+            required
+          />
+          <div *ngIf="outgoingFileForm.get('number')?.errors && outgoingFileForm.get('number')?.touched" class="alert alert-danger">
+            <small *ngIf="outgoingFileForm.get('number')?.getError('required')">رقم الخطاب مطلوب.</small>
+          </div>
+        </div>
+
+        <!-- عنوان الخطاب -->
+        <div class="form-group">
+          <label for="title">عنوان الخطاب:</label>
+          <input
+            class="form-control"
+            id="title"
+            type="text"
+            formControlName="title"
+            placeholder="أدخل عنوان الخطاب"
+            required
+            minlength="5"
+            maxlength="35"
+          />
+          <div *ngIf="outgoingFileForm.get('title')?.errors && outgoingFileForm.get('title')?.touched" class="alert alert-danger">
+            <small *ngIf="outgoingFileForm.get('title')?.getError('required')">العنوان مطلوب.</small>
+            <small *ngIf="outgoingFileForm.get('title')?.getError('minlength')">الحد الأدنى 5 أحرف.</small>
+            <small *ngIf="outgoingFileForm.get('title')?.getError('maxlength')">الحد الأقصى 35 حرفًا.</small>
+          </div>
+        </div>
+
+        <!-- تاريخ الإرسال -->
+        <div class="form-group">
+          <label for="fileDate">تاريخ الإرسال:</label>
+          <input
+            class="form-control"
+            id="fileDate"
+            type="fileDate"
+            formControlName="fileDate"
+            required
+          />
+        </div>
+
+        <!-- وصف الخطاب -->
+        <div class="form-group">
+          <label for="description">وصف الخطاب:</label>
+          <textarea
+            class="form-control"
+            id="description"
+            formControlName="description"
+            placeholder="أدخل وصف الخطاب"
+          ></textarea>
+        </div>
+
+        <!-- Tags -->
+        <div class="form-group">
+          <label for="tags">الوسوم:</label>
+          <input
+            class="form-control"
+            id="tags"
+            type="text"
+            formControlName="tags"
+            placeholder="أدخل الوسوم (افصل بينها بفاصلة ',')"
+          />
+        </div>
+
+        <!-- إضافة ملف -->
+        <div class="form-group">
+          <label for="file">إضافة ملف:</label>
+          <input
+            class="form-control"
+            id="file"
+            type="file"
+            formControlName="file"
+            (change)="handleFileInput($event)"
+            required
+          />
+          <div *ngIf="outgoingFileForm.get('file')?.errors && outgoingFileForm.get('file')?.touched" class="alert alert-danger">
+            <small>إرفاق الملف مطلوب.</small>
+          </div>
+        </div>
+
+        <!-- عدد المرفقات -->
+        <div class="form-group">
+          <label for="attachmentCount">عدد المرفقات:</label>
+          <input
+            class="form-control"
+            id="attachmentCount"
+            type="number"
+            formControlName="attachmentCount"
+            placeholder="أدخل عدد المرفقات"
+          />
+        </div>
+
+        <!-- زر الإرسال [disabled]="outgoingFileForm.invalid"-->
+        <button type="submit"  class="btn btn-primary btn-block mb-3">
+          إرسال
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+/* .body{
+  background-color: 25%;
+} */
+.form-container {
+  max-width: 600px;
+  margin: auto auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: rgba(249, 249, 249, 0.5); /* اللون مع شفافية */
+}
+
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+  }
+  
+  button:hover:enabled {
+    background-color: #0056b3;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
