@@ -7,8 +7,8 @@
         <th>{{ resultArray.length }}</th>
         <th>جهه الخطاب 
           <input type="text" placeholder="ابحث باستخدام الجهه"
-            (keyup)="beginSearch($event)"
-            [(ngModel)]="from"/>
+            [(ngModel)]="searchInput" 
+/>
         </th>
         <th>رقم الخطاب 
           <input type="letterNumber" placeholder="ابحث باستخدام الرقم"
@@ -37,7 +37,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of resultArray; let i = index ">
+      <tr *ngFor="let row of resultArray | search: searchInput; let i = index ">
         <th>{{i + 1}}</th>
         <td>{{row.Directorate}}</td>
 

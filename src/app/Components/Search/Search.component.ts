@@ -3,39 +3,46 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FileService } from '../../services/file.service';
 import { Observable } from 'rxjs';
+import { SearchPipe } from '../../searchpipe.pipe';
 @Component({
   selector: 'app-Search',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,SearchPipe],
+  // providers:[SearchPipe],
+  
   templateUrl: './Search.component.html',
   styleUrls: ['./Search.component.css'],
 })
 export class SearchComponent implements OnInit {
-
+  searchInput: string ='';
+serch(){
+}
   data:any[] = [ ];
   title: string = '';
   Directorate:string='';
   letterNumber: string | null = null;
   tags: string = '';
-  resultArray: {
-    fileDate: any; letterNumber: number; title: string; tags: string ,  Directorate:string;
+  resultArray:any[]=[];
+//   {
+//     fileDate: any; letterNumber: number; title: string; tags: string ,  Directorate:string;
 
-}[] = [];
+// }[] = [];
 fileDate: any;
 from: any;
-
 constructor(private fileService: FileService) {}
 
   ngOnInit():void {
-    this.fileService.getFile().subscribe({
-      next: (response) => {(this.data = response),this.resultArray=[...this.data];},
-      error: (error) => console.error('Error:', error),
-      complete: () => console.log('File fetched successfully.'),
+    this.fileService.getFile().subscribe(res=>{
+      console.log(res)
+      this.resultArray = res;
+      console.log(this.resultArray);
+
     });
-    this.resultArray = this.data;
   }
 
   beginSearch(event: any) {
+    console.log(this.searchInput)
+
     const value = event.target?.value;
     if (value) {
       console.log(value);
@@ -78,7 +85,7 @@ constructor(private fileService: FileService) {}
             if (Number(textToSearch) !== Number(searchValue)) {
               findings = false;
             }
-          } else if (['Directorate', 'title', 'tags'].includes(key)) {
+          } else if ( 'title' .includes(key)) {
             if (
               typeof textToSearch === 'string' &&
               typeof searchValue === 'string'
