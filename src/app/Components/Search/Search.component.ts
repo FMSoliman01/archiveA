@@ -7,7 +7,7 @@ import { SearchPipe } from '../../searchpipe.pipe';
 @Component({
   selector: 'app-Search',
   standalone: true,
-  imports: [CommonModule, FormsModule,SearchPipe],
+  imports: [CommonModule, FormsModule, SearchPipe],
   // providers:[SearchPipe],
   
   templateUrl: './Search.component.html',
@@ -33,7 +33,7 @@ constructor(private fileService: FileService) {}
 
   ngOnInit():void {
     this.fileService.getFile().subscribe(res=>{
-      console.log(res)
+      console.log("Data loaded ", res);
       this.resultArray = res;
       console.log(this.resultArray);
 
@@ -41,7 +41,7 @@ constructor(private fileService: FileService) {}
   }
 
   beginSearch(event: any) {
-    console.log(this.searchInput)
+    console.log("pipe from beginSearch",this.searchInput)
 
     const value = event.target?.value;
     if (value) {
@@ -50,17 +50,17 @@ constructor(private fileService: FileService) {}
       console.log('لا توجد قيمة في الحقل.');
     }
 
-    const filter = {
-      Directorate: this.Directorate,
-      fileDate: this.fileDate,
-      from: this.from,
-      letterNumber: this.letterNumber,
-      title: this.title,
-      tags: this.tags,
-    };
-    console.log('Search Filter:', filter);
+    // const filter = {
+    //   Directorate: this.Directorate,
+    //   fileDate: this.fileDate,
+    //   from: this.from,
+    //   letterNumber: this.letterNumber,
+    //   title: this.title,
+    //   tags: this.tags,
+    // };
+    // console.log('Search Filter:', filter);
 
-    this.resultArray = this.data.filter((row) => this.isExist(row, filter));
+    // this.resultArray = this.data.filter((row) => this.isExist(row, filter));
   }
 
   isExist(

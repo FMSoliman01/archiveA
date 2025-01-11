@@ -1,38 +1,55 @@
+<nav *ngIf="radio==''" class="navbar sticky-top navbar-expand-lg --bs-primary-bg-subtle  bg-primary"  >
+  
+    <div class="collapse navbar-collapse" >
+      <ul  class="navbar-nav mx-auto nav nav-pills nav-fill gap-2 p-1 small bg-primary bg-light rounded-5 shadow-sm"  style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+        <li class="nav-item">
+          <a  class="nav-link rounded-5 pink" routerLinkActive="active" aria-current="page" (click)="radioOutgoing()"
+          > اضافة صادر</a></li>
+        <li class="nav-item">
+          <a  class="nav-link nav-link rounded-5 green" routerLinkActive="active" (click)="radioIncoming()"
+         >اضافة وارد</a>
+        </li>
+      </ul>
+      
+  </div>
+</nav>
 
-<div class="card">
-  <h2 class="text-center"> تسجيل الخطاب {{radio}} </h2>
+<div class="card" id="element" *ngIf="radio!=''" >
+  <h4 class="text-center"> تسجيل الخطاب {{radio}} </h4>
   <div class="content">
     <!-- قسم النموذج -->
     <div class="form-section">
       <form  (ngSubmit)="submitaddingFileForm(addingFileForm)" [formGroup]="addingFileForm">
         <!-- نوع الخطاب -->
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label>نوع الخطاب:</label>
-          <div>
-            <label>
-              <input
-              (change)="radioOutgoing()"
-                type="radio"
-                formControlName="letterType"
-                value="صادر"
-                required
-              /> صادر
+          <div clas="form-check">
+            <input
+            (change)="radioOutgoing()"
+              type="radio"
+              formControlName="letterType"
+              value="صادر"
+              required
+            /> 
+            <label  class="radio-inline form-check-label">
+             صادر
             </label>
-            <label>
-              <input
+            <input 
               (change)="radioIncoming()"
 
                 type="radio"
                 formControlName="letterType"
                 value="وارد"
                 required
-              /> وارد
+              />
+            <label class="radio-inline form-check-label">
+               وارد
             </label>
           </div>
           <div *ngIf="addingFileForm.get('letterType')?.errors && addingFileForm.get('letterType')?.touched" class="alert alert-danger">
             <small>يرجى اختيار نوع الخطاب.</small>
           </div>
-        </div>
+        </div> -->
 
         <!-- رقم الخطاب -->
         <div class="form-group">
@@ -89,20 +106,21 @@
             id="title"
             type="text"
             formControlName="title"
-            placeholder="أدخل عنوان الخطاب"
+            placeholder="أدخل موضوع الخطاب"
             required
             minlength="5"
             maxlength="35"
           />
           <div *ngIf="addingFileForm.get('title')?.errors && addingFileForm.get('title')?.touched" class="alert alert-danger">
-            <small *ngIf="addingFileForm.get('title')?.getError('required')">العنوان مطلوب.</small>
+            <small *ngIf="addingFileForm.get('title')?.getError('required')">الموضوع مطلوب.</small>
             <small *ngIf="addingFileForm.get('title')?.getError('minlength')">الحد الأدنى 5 أحرف.</small>
             <small *ngIf="addingFileForm.get('title')?.getError('maxlength')">الحد الأقصى 35 حرفًا.</small>
           </div>
         </div>
-        <div class="form-group">
+<!-- جهه الخطاب     -->
+    <!-- <div >
           <label for="Directorate">جهة الخطاب:</label>
-          <input
+          <select
             class="form-control"
             id="Directorate"
             type="text"
@@ -111,14 +129,45 @@
             required
             minlength="5"
             maxlength="35"
-          />
+          ><option value="">اختر جهة الخطاب</option>
+          <option *ngFor="let directorate of directorates" [value]="directorate">
+            {{ directorate }}
+          </option>
+        </select>
           <div *ngIf="addingFileForm.get('Directorate')?.errors && addingFileForm.get('Directorate')?.touched" class="alert alert-danger">
-            <small *ngIf="addingFileForm.get('Directorate')?.getError('required')">العنوان مطلوب.</small>
+            <small *ngIf="addingFileForm.get('Directorate')?.getError('required')">الجهه مطلوبة .</small>
             
+          </div>
+        </div> -->
+
+        <div>
+          <label for="Directorate">جهة الخطاب:</label>
+          
+          <select
+            class="form-control"
+            id="Directorate"
+            formControlName="Directorate"
+            required
+            (input)="onSearchChange()"
+          > <input
+          type="text"
+          class="form-control"
+          id="DirectorateSearch"
+          placeholder="ابحث عن جهة الخطاب"
+          [(ngModel)]="searchTerm"
+
+        />
+            <option value="">اختر جهة الخطاب</option>
+            <option *ngFor="let directorate of directorates | search:searchTerm  " [value]="directorate">
+              {{ directorate }}
+            </option>
+          </select>
+          <div *ngIf="addingFileForm.get('Directorate')?.errors && addingFileForm.get('Directorate')?.touched" class="alert alert-danger">
+            <small *ngIf="addingFileForm.get('Directorate')?.getError('required')">الجهه مطلوبة .</small>
           </div>
         </div>
 
-      
+
 
         <!-- وصف الخطاب -->
         <div class="form-group">
@@ -133,13 +182,13 @@
 
         <!-- Tags -->
         <div class="form-group">
-          <label for="tags">الوسوم:</label>
+          <label for="tags">الاشارات:</label>
           <input
             class="form-control"
             id="tags"
             type="text"
             formControlName="tags"
-            placeholder="أدخل الوسوم (افصل بينها بفاصلة ',')"
+            placeholder="أدخل الاشارات (افصل بينها بفاصلة ',')"
           />
         </div>
 

@@ -9,22 +9,72 @@ import { DatePipe } from '@angular/common';
 import {  OnInit } from '@angular/core';
 import { AppRoutingModule } from '../../app.routes';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { SearchPipe } from '../../searchpipe.pipe';
 
 @Component({
   selector: 'app-add',
   providers: [DatePipe],
   standalone:true,
-  imports: [CommonModule,FormsModule ,ReactiveFormsModule,RouterModule] ,
+  imports: [CommonModule,FormsModule ,ReactiveFormsModule,RouterModule,SearchPipe] ,
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css'] ,
   // schemas: [NO_ERRORS_SCHEMA] // إضافة هذا
 
 })
 export class AddComponent {
-  constructor(private _AuthService: AuthService,private datePipe: DatePipe){}
+
+  constructor(private _AuthService: AuthService,private datePipe: DatePipe){
+    
+  }
   error:string = "";
   isLoading = false;
   radio="";
+  filteredDirectorates: string[] = [];
+  searchTerm: string = '';
+
+  directorates: string[] = [
+    'الجهاز رئيس',
+    'الجهاز رئيس سكرتارية',
+    'رئيس قسم المحفوظات (الأرشيف)',
+    'مكتب رئيس الجهاز',
+    'الجهاز رئيس نائب',
+    'الجهاز رئيس نائب',
+    'الجهاز رئيس نائب',
+    'الجهاز لرئيس يس معاون هند',
+    'الجهاز لرئيس يس معاون هند',
+    'الجهاز لرئيس يس معاون هند',
+    'شؤون مالية وإدارية وعقارية',
+    'الجهاز لرئيس يس معاون هند',
+    'المعلومات مركز',
+    'العقارية الإدارة',
+    'التراخيص',
+    'الإدارة المالية',
+    'المكتب الفني',
+    'مركز خدمة المواطن التكنولوجي',
+    'الموارد البشرية',
+    'الإدارة القانونية',
+    'الحركة والتشغيل',
+    'الشؤون الإدارية وشؤون العاملين',
+    'إدارة الاستثمار',
+    'إدارة التنمية',
+    'إدارة البيئة',
+    'التحول الرقمي',
+    'التخطيط والمتابعة',
+    'إدارة العلاقات العامة',
+    'العطاءات والعقود',
+    'إدارة الزراعة',
+    'إدارة الكهرباء',
+    'المشروعات',
+    'إدارة المخازن',
+    'جهاز توشكى',
+    'الأرشيف بالمركز التكنولوجي',
+    'إدارة الجودة',
+    'إدارة التنفيذ',
+    'إدارة المساحة',
+    'إدارة الأمن',
+    'إدارة المرافق والطرق والمياه'
+  ];    
+
  addingFileForm: FormGroup= new FormGroup({
 
   title: new FormControl(null,[Validators.required ,Validators.minLength(3),Validators.maxLength(30)]),
@@ -34,17 +84,22 @@ export class AddComponent {
   fileDate: new FormControl(new Date().toISOString().split('T')[0], [Validators.required]),
   letterType: new FormControl(null ,[Validators.required]),
   // currentDate: new FormControl(null),
-  deliveryDate :new FormControl(),
+  deliveryDate :new FormControl(new Date().toISOString().split('T')[0], [Validators.required]),
+  responseDuration:new FormControl(),
   Directorate:new FormControl(),
+
   file: new FormControl([], [Validators.required]),
   attachmentCount: new FormControl(null)
  });
+//  this.filteredDirectorates = this.directorates;
+ 
 radioOutgoing(){
-  this.radio="صادر"
+  this.radio="الصادر"
   console.log(this.addingFileForm.controls['letterType'].value);
+
 }
 radioIncoming(){
-  this.radio="وارد"
+  this.radio="الوارد"
   console.log(this.addingFileForm.controls['letterType'].value);
 }
  submitaddingFileForm(addingFileForm:FormGroup){
@@ -66,6 +121,11 @@ radioIncoming(){
  ngOnInit(): void {
   const currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   this.addingFileForm.patchValue({ date: currentDate });
+}
+onSearchChange() {
+  this.filteredDirectorates = this.directorates.filter(directorate =>
+    directorate.includes(this.searchTerm)
+  );
 }
 
   // constructor(private fb: FormBuilder, private fileService: FileService,) {

@@ -31,21 +31,23 @@
             (keyup)="beginSearch($event)"
             [(ngModel)]="tags" />
         </th>
-        <th>اضافات
-          
+        <th>أدوات التحكم
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of resultArray | search: searchInput; let i = index ">
+      <!--  | search: searchInput    ; let i = index-->
+      <tr *ngFor="let row of resultArray | search: searchInput ; let i = index ">
         <th>{{i + 1}}</th>
-        <td>{{row.Directorate}}</td>
+        <td>{{row.Directorate}}</td> 
 
         <td>{{row.letterNumber}}</td>
         <td>{{row.title}}</td>
         <td>{{row.fileDate}}</td> 
         <td>{{row.tags}}</td> 
-        <td><div><i class="bi bi-eye-fill"></i><i class="bi bi-pen"></i> <i class="bi bi-trash3-fill"></i> </div></td>
+        <td><div><span>
+
+        <i class="bi bi-eye-fill"> </i> </span><i class="bi bi-pen"></i> <i class="bi bi-trash3-fill"></i> </div></td>
       </tr>
     </tbody>
   </table>
