@@ -1,13 +1,45 @@
 /* .body{
   background-color: 25%;
 } */
+ /* Remove scrollbar from body but allow inside card */
+body::-webkit-scrollbar {
+  display: none;
+}
+html, body {
+  height: 95vh; /* 95% of the viewport height */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Hide any unnecessary scrolling */
+}
+.card {
+  background-color:rgba(249, 249, 249, 0.5);
+  max-height: 90vh; /* Adjust the form size */
+  overflow-y: auto; /* Only the card scrolls if needed */
+}
+
+.content {
+  height: 100%;
+  overflow-y: auto; /* Enables scrolling inside content if needed */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.form-section.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* تقسيم إلى عمودين */
+  gap: 20px; /* المسافة بين العناصر */
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
 .form-container {
   max-width: 600px;
   margin: auto auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background: rgba(249, 249, 249, 0.5); /* اللون مع شفافية */
+  background: rgba(249, 249, 249, 0.3); /* اللون مع شفافية */
 }
 
   

@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(249, 249, 249, 0.9);  /* لون الخلفية */
+    /* background: rgba(249, 249, 249, 0.3);  لون الخلفية */
     direction: rtl; /* محاذاة من اليمين لليسار */
   }
   
@@ -19,7 +19,7 @@
   .container {
     width: 80%;
     max-width: 1000px;
-    background: rgba(255, 255, 255, 0.3);  /* شفافية الخلفية */
+    /* background: rgba(255, 255, 255, 0.3);  شفافية الخلفية */
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -30,7 +30,7 @@
   /* الجدول */
   .table {
     width: 100%;
-    background: rgba(255, 255, 255, 0.2);  /* شفافية الخلفية */
+    /* background-color: rgba(245, 245, 245, 0.4) !important;  شفافية الخلفية */
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

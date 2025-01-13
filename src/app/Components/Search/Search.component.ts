@@ -29,6 +29,9 @@ serch(){
 // }[] = [];
 fileDate: any;
 from: any;
+searchTerm: string = '';
+files: any[] = [];
+errorMessage: string = '';
 constructor(private fileService: FileService) {}
 
   ngOnInit():void {
@@ -38,29 +41,24 @@ constructor(private fileService: FileService) {}
       console.log(this.resultArray);
 
     });
+    
   }
+  //  print(){console.log(this.resultArray);}
 
-  beginSearch(event: any) {
-    console.log("pipe from beginSearch",this.searchInput)
-
-    const value = event.target?.value;
-    if (value) {
-      console.log(value);
-    } else {
-      console.log('لا توجد قيمة في الحقل.');
+  beginSearch(event: any) : void {
+    if (this.searchInput.trim()) {
+      this.fileService.searchFiles(this.searchInput).subscribe(
+        (response) => {
+          this.files = response; // Update the file list based on search term
+          this.errorMessage = ''; // Reset any error messages
+        },
+        (error) => {
+          this.errorMessage = error.error.message || 'Error occurred during search';
+          this.files = []; // Clear previous results
+        }
+      );
     }
-
-    // const filter = {
-    //   Directorate: this.Directorate,
-    //   fileDate: this.fileDate,
-    //   from: this.from,
-    //   letterNumber: this.letterNumber,
-    //   title: this.title,
-    //   tags: this.tags,
-    // };
-    // console.log('Search Filter:', filter);
-
-    // this.resultArray = this.data.filter((row) => this.isExist(row, filter));
+   
   }
 
   isExist(

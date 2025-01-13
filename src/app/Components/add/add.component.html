@@ -14,12 +14,12 @@
   </div>
 </nav>
 
-<div class="card" id="element" *ngIf="radio!=''" >
+<div class="card " id="element" *ngIf="radio!=''" >
   <h4 class="text-center"> تسجيل الخطاب {{radio}} </h4>
   <div class="content">
     <!-- قسم النموذج -->
-    <div class="form-section">
-      <form  (ngSubmit)="submitaddingFileForm(addingFileForm)" [formGroup]="addingFileForm">
+    <div >
+      <form class="form-section grid" (ngSubmit)="submitaddingFileForm(addingFileForm)" [formGroup]="addingFileForm">
         <!-- نوع الخطاب -->
         <!-- <div class="form-group">
           <label>نوع الخطاب:</label>
@@ -72,7 +72,7 @@
             <input
               class="form-control"
               id="fileDate"
-              type="fileDate"
+              type="Date"
               formControlName="fileDate"
               required
             />
@@ -83,7 +83,7 @@
           <input
             class="form-control"
             id="deliveryDate"
-            type="fileDate"
+            type="Date"
             formControlName="deliveryDate"
             required
           />
@@ -143,25 +143,26 @@
         <div>
           <label for="Directorate">جهة الخطاب:</label>
           
-          <select
-            class="form-control"
-            id="Directorate"
-            formControlName="Directorate"
-            required
-            (input)="onSearchChange()"
-          > <input
+          <!-- <input
           type="text"
           class="form-control"
           id="DirectorateSearch"
           placeholder="ابحث عن جهة الخطاب"
-          [(ngModel)]="searchTerm"
-
-        />
-            <option value="">اختر جهة الخطاب</option>
-            <option *ngFor="let directorate of directorates | search:searchTerm  " [value]="directorate">
-              {{ directorate }}
-            </option>
-          </select>
+         formControlName="Directorate"
+        /> -->
+        
+        <!-- Select Dropdown -->
+        <select
+          class="form-control"
+          id="Directorate"
+          formControlName="Directorate"
+          required
+        >
+          <option value="">اختر جهة الخطاب</option>
+          <option *ngFor="let directorate of filteredDirectorates" [value]="directorate">
+            {{ directorate }}
+          </option>
+        </select>
           <div *ngIf="addingFileForm.get('Directorate')?.errors && addingFileForm.get('Directorate')?.touched" class="alert alert-danger">
             <small *ngIf="addingFileForm.get('Directorate')?.getError('required')">الجهه مطلوبة .</small>
           </div>

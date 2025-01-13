@@ -120,13 +120,21 @@ radioIncoming(){
  };
  ngOnInit(): void {
   const currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-  this.addingFileForm.patchValue({ date: currentDate });
+  this.addingFileForm.patchValue({ fileDate: currentDate, deliveryDate: currentDate });
+  this.filteredDirectorates = [...this.directorates] // Copy all options initially
+  this.addingFileForm.get('Directorate')?.valueChanges.subscribe(value => {
+    this.filteredDirectorates = this.directorates.filter(d =>
+      d.toLowerCase().includes(value.toLowerCase())
+    );
+  });
+  
 }
-onSearchChange() {
-  this.filteredDirectorates = this.directorates.filter(directorate =>
-    directorate.includes(this.searchTerm)
-  );
-}
+// onSearchChange() {
+//   this.filteredDirectorates = this.directorates.filter(directorate =>
+//     directorate.toLowerCase().includes(this.searchTerm.toLowerCase()) // بحث غير حساس لحالة الأحرف
+//   );
+// }
+
 
   // constructor(private fb: FormBuilder, private fileService: FileService,) {
   //   // إنشاء النموذج
